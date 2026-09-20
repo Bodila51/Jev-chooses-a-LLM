@@ -1,4 +1,6 @@
-# Jev Router for Cursor
+# Jev-chooses-a-LLM
+
+**Jev Router for Cursor**
 
 **Cursor executes. LLMs write and build. Jev decides how much intelligence the task deserves.**
 
@@ -44,10 +46,46 @@ Approval gates (`production_deploy`, `financial_transaction`, …) stop SDK runs
 7. Max **2** escalations; no infinite retry; no same-tier retry unless error says retry can succeed
 8. Jev unavailable → **BALANCED** + `degradedRouting: true`
 
+
+## What you need for a *working* system
+
+This repo is enough to run end-to-end **if** you bring keys and follow the right mode.
+
+### Required for routing (Jev)
+
+1. Node.js 20+ (22.13+ recommended; 22+ for `--use-system-ca` on Windows TLS issues)
+2. `TYPESAFE_API_KEY` in local `.env` (never commit)
+3. `npm install && npm test && npm run demo`
+
+### Required for real model switching (SDK)
+
+4. `CURSOR_API_KEY` in `.env`
+5. `npm install @cursor/sdk` (optionalDependency / peer)
+6. Run:
+
+```bash
+npx tsx sdk-runner/cli.ts --run "your task"
+# Windows TLS/antivirus MITM:
+# $env:NODE_OPTIONS="--use-system-ca"
+```
+
+### Cursor Chat (soft mode)
+
+7. Symlink/copy this folder into `~/.cursor/plugins/local/Jev-chooses-a-LLM` (see `scripts/setup.sh`)
+8. Enable MCP `jev-router`
+9. **Honest limit:** chat parent model is **not** hot-swapped. Jev decides the tier; the parent (e.g. Grok) may still execute unless you use SDK `--run`.
+
+### Not included / not claimed
+
+- Your personal API keys
+- Guaranteed Cursor Router `auto-smart` (account-dependent; we fall back to catalog models)
+- Automatic X login / posting
+- Dollar cost when the plan does not expose billed cents
+
 ## Clone
 
 ```bash
-git clone https://github.com/Bodila51/jev-router-for-cursor.git
+git clone https://github.com/Bodila51/Jev-chooses-a-LLM.git
 cd jev-router-for-cursor
 cp .env.example .env
 # put TYPESAFE_API_KEY (and CURSOR_API_KEY for SDK --run) in .env — never commit it
