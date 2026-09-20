@@ -20,8 +20,11 @@ function loadDotEnv(): void {
 
 loadDotEnv();
 
-// Must re-exec BEFORE importing @cursor/sdk (ESM hoists static imports).
-if (!process.execArgv.includes("--use-system-ca")) {
+// Windows/antivirus TLS MITM: Node 22+ supports --use-system-ca.
+// Only re-exec when the flag exists; older Node must not get it.
+const major = Number(process.versions.node.split(".")[0] || 0);
+const needsSystemCa = major >= 22 && !process.execArgv.includes("--use-system-ca");
+if (needsSystemCa) {
   const args = ["--use-system-ca", ...process.execArgv, ...process.argv.slice(1)];
   const r = spawnSync(process.execPath, args, { stdio: "inherit", env: process.env });
   process.exit(r.status ?? 1);
