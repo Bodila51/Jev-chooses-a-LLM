@@ -1,0 +1,21 @@
+{
+  "name": "jev-router-for-cursor",
+  "version": "1.0.0",
+  "description": "Cursor executes. LLMs write and build. Jev decides how much intelligence the task deserves.",
+  "author": {
+    "name": "Jev Router"
+  },
+  "license": "MIT",
+  "keywords": ["jev", "typesafe", "router", "cost", "routing", "mcp"],
+  "variables": {
+    "type": "object",
+    "properties": {
+      "TYPESAFE_API_KEY": {
+        "type": "string",
+        "title": "TypeSafe API key",
+        "description": "Bearer token for https://api.typesafe.ai/v1/systemone (Jev decisions only)"
+      }
+    },
+    "required": ["TYPESAFE_API_KEY"]
+  }
+}

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.cursor/mcp.json
+config.json
+config.local.json
+telemetry/
+*.log
+.DS_Store
+sync-closeout.tgz
+*.tgz

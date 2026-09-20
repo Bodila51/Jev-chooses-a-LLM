@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "jev-router": {
+      "command": "npx",
+      "args": ["tsx", "${CURSOR_PLUGIN_ROOT}/mcp/server.ts"],
+      "env": {
+        "TYPESAFE_API_KEY": "${TYPESAFE_API_KEY}",
+        "JEV_ROUTER_CONFIG": "${CURSOR_PLUGIN_ROOT}/config.example.json",
+        "NODE_OPTIONS": "--use-system-ca"
+      }
+    }
+  }
+}

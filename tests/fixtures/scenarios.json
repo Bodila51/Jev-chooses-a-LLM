@@ -1,0 +1,70 @@
+[
+  {
+    "id": "trivial-rename",
+    "task": "Rename variable foo to bar in src/util.ts — trivial one-line rename",
+    "expectTier": "cost",
+    "notes": "Trivial reversible edit"
+  },
+  {
+    "id": "research-summary",
+    "task": "Research and summarize the top three TypeScript test runners",
+    "expectTier": "balanced",
+    "notes": "Read-only research"
+  },
+  {
+    "id": "site-build",
+    "task": "Build a full multi-page marketing website with architecture and deployment",
+    "expectTier": "intelligence",
+    "notes": "Complex build"
+  },
+  {
+    "id": "email-triage",
+    "task": "Triage my inbox and rank which emails need replies (do not send)",
+    "expectTier": "balanced",
+    "notes": "Classify only"
+  },
+  {
+    "id": "send-email",
+    "task": "Send an email to the customer apologizing for downtime",
+    "expectApproval": ["send_email"],
+    "notes": "Approval required"
+  },
+  {
+    "id": "security-audit",
+    "task": "Security review this auth middleware for XSS and credential leaks",
+    "expectTier": "intelligence",
+    "notes": "Security-sensitive"
+  },
+  {
+    "id": "financial",
+    "task": "Update the Stripe payment refund flow and reconcile billing",
+    "expectTier": "intelligence",
+    "expectApproval": ["financial_transaction"],
+    "notes": "Financial"
+  },
+  {
+    "id": "production-deploy",
+    "task": "Deploy to production and run the release checklist",
+    "expectTier": "intelligence",
+    "expectApproval": ["production_deploy"],
+    "notes": "Prod deploy"
+  },
+  {
+    "id": "publish-post",
+    "task": "Publish this blog post to the marketing site",
+    "expectApproval": ["publish"],
+    "notes": "Publish approval"
+  },
+  {
+    "id": "delete-data",
+    "task": "Delete all user records older than 5 years from the database",
+    "expectApproval": ["delete_data"],
+    "notes": "Destructive"
+  },
+  {
+    "id": "viral-posts",
+    "task": "Draft three viral social posts about our launch (do not publish)",
+    "expectTier": "balanced",
+    "notes": "Writing, no publish"
+  }
+]

@@ -1,0 +1,63 @@
+{
+  "name": "jev-router-for-cursor",
+  "version": "1.0.0",
+  "description": "Jev Router for Cursor — Cursor executes; LLMs write and build; Jev decides how much intelligence the task deserves.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "jev-router": "./dist/sdk-runner/cli.js",
+    "jev-router-mcp": "./dist/mcp/server.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "tsx --test tests/policy.test.ts tests/redaction.test.ts tests/router.test.ts",
+    "demo": "tsx scripts/demo.ts",
+    "mcp": "tsx mcp/server.ts",
+    "dry-run": "tsx sdk-runner/cli.ts --dry-run",
+    "route": "tsx sdk-runner/cli.ts --route-only"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.18.0"
+  },
+  "peerDependencies": {
+    "@cursor/sdk": ">=0.1.0"
+  },
+  "peerDependenciesMeta": {
+    "@cursor/sdk": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0"
+  },
+  "keywords": [
+    "cursor",
+    "jev",
+    "typesafe",
+    "router",
+    "mcp",
+    "plugin"
+  ],
+  "files": [
+    "dist",
+    "agents",
+    "rules",
+    "commands",
+    "skills",
+    "mcp",
+    "sdk-runner",
+    "shared",
+    "scripts",
+    ".cursor-plugin",
+    "mcp.json",
+    "config.example.json",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE"
+  ]
+}

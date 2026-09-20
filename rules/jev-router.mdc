@@ -1,0 +1,30 @@
+---
+description: Parent must call Jev MCP before delegating work; soft-enforced Chat routing
+alwaysApply: true
+---
+
+# Jev Router — parent routing rule
+
+Cursor executes. LLMs write and build. **Jev decides how much intelligence the task deserves.**
+
+## Soft-enforced Chat mode (this rule)
+
+1. Before doing the main task yourself, call MCP tool `jev_route` (or `jev_dry_run` if the user asked for a dry run) with the user task and known facts (repo present, needs edit/web/terminal, sensitivity flags if known).
+2. Read the returned `tier`, `subagent`, `requireApproval`, and `degradedRouting`.
+3. Delegate the **main work** to the named subagent:
+   - `cost` → `jev-cost`
+   - `balanced` → `jev-balanced`
+   - `intelligence` → `jev-intelligence`
+4. Do **not** hot-swap the parent model. Chat mode delegates to subagents; only the SDK runner sets `Agent.create({ model })` before execution.
+5. If `requireApproval` is true, ask the user before any side effect listed in `approvalReasons`.
+6. If Jev / MCP is unavailable and fallback allows, use BALANCED (`jev-balanced`) and say routing was degraded.
+7. Kill switch: if config `enabled` is false, or user runs `/jev-bypass`, skip routing and proceed with normal agent behavior.
+
+## Hard policy (also enforced in MCP code)
+
+- confidence < 0.70 → BALANCED
+- security-sensitive → INTELLIGENCE
+- financial / production deploy → INTELLIGENCE + approval
+- send/delete email, publish → approval required
+- COST fail → BALANCED → INTELLIGENCE → stop (max 2 escalations)
+- Jev down → BALANCED + `degradedRouting: true`

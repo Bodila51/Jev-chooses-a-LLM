@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "defaultMode": "balanced",
+  "confidenceThreshold": 0.7,
+  "maximumEscalations": 2,
+  "maximumTaskCostUsd": 1.0,
+  "showRoutingTrace": true,
+  "logPromptContent": false,
+  "requireApprovalFor": [
+    "send_email",
+    "delete_data",
+    "publish",
+    "production_deploy",
+    "financial_transaction"
+  ],
+  "typesafe": {
+    "baseUrl": "https://api.typesafe.ai/v1/systemone",
+    "model": "jev-latest",
+    "timeoutMs": 15000
+  },
+  "fallbackModels": {
+    "cost": "composer-2.5",
+    "balanced": "claude-sonnet-5",
+    "intelligence": "claude-opus-5",
+    "note": "Verified against this account catalog. Prefer auto-smart optimize_for when Router is available. Never invent IDs."
+  }
+}
